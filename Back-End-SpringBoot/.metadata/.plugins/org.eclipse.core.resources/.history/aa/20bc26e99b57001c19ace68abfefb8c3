@@ -1,0 +1,7 @@
+package br.com.academiaatos.Academia.Atos.DTO;
+
+public class RecrutadorDTO {
+
+	private Long id;
+	private String nome;
+}

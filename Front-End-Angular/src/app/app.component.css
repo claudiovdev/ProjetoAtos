@@ -1,0 +1,17 @@
+
+#{
+  width: 100%;
+}
+#logo img{
+  margin-left: 50px;
+  height: 44px;
+  width: 130px;
+}
+
+#navbarNavDropdown{
+  margin-left: 50px;;
+}
+
+.bg-dark{
+  background-color: #0f0f0f !important;
+}

@@ -1,0 +1,37 @@
+<div class="container-fluid bg-dark area2 text-white">
+  <div class="container">
+    <div class="d-flex bd-highlight mb-3">
+      <div class="me-auto p-2 bd-highlight"><h2>Cadastrar Candidatos</h2></div>
+    </div>
+    <form class="row form" [formGroup]="cadastroForm">
+      <div class="col-md-4 my-3">
+        <label for="formGroupNome" class="form-label">Nome</label>
+        <input type="text" name="sobrenome" id="formGroupNome"  class="form-control"   placeholder="Digite o nome do candidato" formControlName="nome">
+      </div>
+      <div class="col-md-4 my-3">
+        <label for="formGroupSobrenome" class="form-label">Sobrenome</label>
+        <input type="text"  id="formGroupSobrenome" class="form-control" placeholder="Digite o sobrenome do candidato" formControlName="sobreNome">
+      </div>
+      <div class="col-md-4 my-3">
+        <label class="form-label" for="inputEmail">Email</label>
+            <input type="email" class="form-control" id="inputEmail" placeholder="Email" required formControlName="email">
+      </div>
+      <label class="col-md-4 col-form-label">Recrutador</label>
+            <select
+              class="form-control"
+              aria-label="Default select example"
+              formControlName="recrutador"
+              [compareWith]="compararObjeto"
+            >
+
+              <option value="null" disabled selected>Selecione um recrutador</option>
+              <option *ngFor="let recrutador of recrutadores" [ngValue]="recrutador">
+                {{ recrutador.nome }}
+              </option>
+            </select>
+      <div class="col-12 my-3">
+        <button type="submit" class="btn btn-primary" (click)="criarCandidato()">Registrar</button>
+      </div>
+    </form>
+  </div>
+</div>

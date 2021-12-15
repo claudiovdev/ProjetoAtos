@@ -1,0 +1,26 @@
+package br.com.academiaatos.Academia.Atos.DTO;
+
+import br.com.academiaatos.Academia.Atos.Models.Recrutador;
+
+public class RecrutadorDTO {
+
+	private Long id;
+	
+	private String nome;
+	
+	
+	public RecrutadorDTO(Recrutador obj) {
+		super();
+		this.id = obj.getId();
+		this.nome = obj.getNome();
+	}
+
+
+	public RecrutadorDTO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	
+}

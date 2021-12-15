@@ -1,0 +1,5 @@
+package br.com.academiaatos.Academia.Atos.DTO;
+
+public class RecrutadorDTO {
+
+}

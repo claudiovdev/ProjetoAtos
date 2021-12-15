@@ -1,0 +1,34 @@
+<div class="container-fluid bg-dark area2 text-white" >
+  <div class="container">
+    <div class="d-flex bd-highlight mb-3">
+      <div class="me-auto p-2 bd-highlight"><h2>Recrutadores</h2></div>
+    </div>
+    <div class="table-responsive bg-dark border-info rounded-3 border border-1" >
+      <table class="table text-white">
+        <thead>
+          <tr>
+            <th scope="col p-3">Id</th>
+            <th scope="col p-3">Nome</th>
+            <th scope="col p-3">Sobrenome</th>
+            <th scope="col p-3">Email</th>
+          </tr>
+        </thead>
+        <tbody id="mytable"  *ngFor="let recrutador of recrutadores">
+          <tr>
+            <td class="p-3">{{recrutador.id}}</td>
+            <td class="p-3">{{recrutador.nome}}</td>
+            <td class="p-3">{{recrutador.sobrenome}}</td>
+            <td class="p-3">{{recrutador.email}}</td>
+            <td>
+              <button class="btn btn-success" (click)="atualizarRecrutador(recrutador)">Atualizar</button>
+              <button class="btn btn-danger mx-3" (click)="deletarCandidato(recrutador)">Deletar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="p-2 bd-highlight">
+        <button type="button" class="btn btn-success" (click)="navegarParaCriacao()">Cadastrar novo recrutador</button>
+      </div>
+    </div>
+  </div>
+</div>

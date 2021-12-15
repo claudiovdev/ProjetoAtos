@@ -1,0 +1,67 @@
+package br.com.academiaatos.Academia.Atos.Controllers;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import br.com.academiaatos.Academia.Atos.DTO.RecrutadorDTO;
+import br.com.academiaatos.Academia.Atos.Models.Recrutador;
+import br.com.academiaatos.Academia.Atos.Repositories.RecrutadorRepository;
+import io.swagger.annotations.ApiOperation;
+
+@RestController
+@CrossOrigin(origins = "*")
+@RequestMapping("/api")
+public class RecrutadorController {
+
+	@Autowired
+	RecrutadorRepository recrutadorRepository;
+	
+	@ApiOperation(value= "Retorna um unico recrutador")
+	@GetMapping("/recrutador/{id}")
+	public Recrutador buscarCandidatoPorId(@PathVariable(value = "id") long id) {
+		return recrutadorRepository.findById(id);
+	}
+	
+	@ApiOperation(value= "Retorna uma lista de recrutadores")
+	@GetMapping("/recrutadores")
+	public List<RecrutadorDTO> findAll(){
+		List<Recrutador> list = recrutadorRepository.findAll();
+		List<RecrutadorDTO> listDTO = list.stream().map(obj -> new RecrutadorDTO(obj)).collect(Collectors.toList());
+		return listDTO;
+	}
+	
+	@ApiOperation(value= "Cria um novo recrutador")
+	@PostMapping("/recrutador")
+	public Recrutador criarRecrutador(@RequestBody Recrutador recrutador) {
+		return recrutadorRepository.save(recrutador);
+	}
+	
+	@ApiOperation(value= "Deleta um recrutador")
+	@DeleteMapping("/recrutador/{id}")
+	public void deletarRecrutador(@PathVariable Long id) {
+		recrutadorRepository.deleteById(id);
+	}
+	
+	@ApiOperation(value= "Atualiza um recrutador")
+	public Recrutador atualizarRecrutador(@RequestBody Recrutador recrutadorNovo,@PathVariable Long id) {
+		return recrutadorRepository.findById(id).map(recrutadorAntigo -> {
+			recrutadorAntigo.setNome(recrutadorNovo.getNome());
+			recrutadorAntigo.setSobreNome(recrutadorNovo.getSobreNome());
+			recrutadorAntigo.setEmail(recrutadorNovo.getEmail());
+			Recrutador update = recrutadorRepository.save(recrutadorAntigo);
+			return update;
+		}).orElse(null);
+	}
+	
+	
+}

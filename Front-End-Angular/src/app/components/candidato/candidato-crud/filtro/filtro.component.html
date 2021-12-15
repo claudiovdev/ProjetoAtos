@@ -1,0 +1,20 @@
+
+<form action="" [formGroup]="formulario">
+<label class="col col-form-label"></label>
+            <select
+              class="form-control"
+              aria-label="Default select example"
+              formControlName="recrutador"
+              [compareWith]="compararObjeto"
+              (change)="ngOnChange(formulario.value.recrutador)"
+            >
+              <option value="null" disabled selected>Selecione um recrutador</option>
+              <option *ngFor="let recrutador of recrutadores" [ngValue]="recrutador">
+                {{ recrutador.nome }}
+              </option>
+            </select>
+</form>
+<div class="col">
+  <button class="btn btn-success my-1  px-5 " (click)="pesquisarRecrutador()">Buscar por Recrutador</button>
+</div>
+
